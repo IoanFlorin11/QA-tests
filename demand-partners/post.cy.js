@@ -8,15 +8,15 @@ describe('POST Products', () => {
             url: demandPartnerPath,
             body:
             {
-                "name": "Automation Test Positive",
-                "prefix": "automation-test323212",
+                "name": "Automation Test Positive3",
+                "prefix": "automation-test3232122",
                 "daysOfWaitingForFulfillment": 0
             }
         })
         expect(response.status).to.eq(201)
 
     })
-    it('We should not be able to post with no name introduced ', async() => {
+    it('400! We should not be able to post with no name introduced ', async() => {
         const response = await cy.request({
             method: 'POST',
             url: demandPartnerPath,
@@ -32,7 +32,7 @@ describe('POST Products', () => {
         expect(response.status).to.eq(400)
         // expect(response.body).has.property('name', 'Automation Test1')
     })
-    it('We should not be able to post with no name property ', async() => {
+    it('400! We should not be able to post with no name property ', async() => {
         const response = await cy.request({
             method: 'POST',
             url: demandPartnerPath,
@@ -47,7 +47,7 @@ describe('POST Products', () => {
 
         expect(response.status).to.eq(400)
 })
-    it('We should not be able to post with the same prefix ', async() => {
+    it('500! We should not be able to post with the same prefix ', async() => {
         const response = await cy.request({
             method: 'POST',
             url: demandPartnerPath,
@@ -62,7 +62,7 @@ describe('POST Products', () => {
 
         expect(response.status).to.eq(500)
 })
-    it('We should not be able to post with the same name ', async() => {
+    it('500! We should not be able to post with the same name ', async() => {
         const response = await cy.request({
             method: 'POST',
             url: demandPartnerPath,
@@ -76,5 +76,21 @@ describe('POST Products', () => {
         }) 
 
         expect(response.status).to.eq(500)
+})
+
+it('404! We should not be able to post with the same name ', async() => {
+    const response = await cy.request({
+        method: 'POST',
+        url: 'wrongaddress',
+        failOnStatusCode: false,
+        body:
+        {
+            "name": "Test for wrong address",
+            "prefix": "negtest1212",
+            "daysOfWaitingForFulfillment": 0
+        }
+    }) 
+
+    expect(response.status).to.eq(404)
 })
 })

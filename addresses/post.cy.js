@@ -25,7 +25,7 @@ describe('POST address', () => {
 
   })
 
-  it('Negative case- Neither of  addressLine1, city, zipCode, stateCode, contactName, countryCode can  null; phone can not be null or empty', async () => {
+  it('400! Negative case- Neither of  addressLine1, city, zipCode, stateCode, contactName, countryCode can  null; phone can not be null or empty', async () => {
     const response = await cy.request({
         method: 'POST',
         url: demandPartnerPath,
@@ -47,6 +47,30 @@ describe('POST address', () => {
         }
     })
     expect(response.status).to.eq(400)
+})
+
+it('404! Negative test-incorrect address', async () => {
+    const response = await cy.request({
+        method: 'POST',
+        url: '/addressess',
+        failOnStatusCode: false,
+        headers: {DemandPartnerId: '3fad6e81-d602-46b2-8c50-a7515f6a0b4e'},
+        body:
+        {
+            "addressLine1": "automationTest",
+            "addressLine2": "string35",
+            "addressLine3": "string63",
+            "city": "string73",
+            "stateCode": "string93",
+            "countryCode": "string333",
+            "zipCode": "string232",
+            "contactName": "string663",
+            "companyName": "string883",
+            "phone": "string993",
+            "email": "string003"
+        }
+    })
+    expect(response.status).to.eq(404)
 })
 })
 
