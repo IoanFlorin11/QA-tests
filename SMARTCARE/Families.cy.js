@@ -37,6 +37,7 @@ describe('Families tests', () => {
         cy.get(addFamily).should('be.visible').click()
         // cy.get(enterFamilyName).type('AutomationTestAddFamily')
         cy.wait(2000)
+        //TEST for CANCEL BUTTON
         cy.get(cancelAdd).should('be.visible').click() //see if the cancel button works
         cy.get(addFamily).should('be.visible').click()
         cy.wait(2000)
@@ -57,7 +58,7 @@ describe('Families tests', () => {
         // cy.get(viewFamilyDetails).click()
         cy.get(addAdult).click()
         cy.get(adultEmail).click()
-        cy.get(typeEmail).type('automationtest34@smartcare.com') //error if the person is archived
+        cy.get(typeEmail).type('automationtest4432430@smartcare.com') //error if the person is archived
         cy.get(continueButton).click()
         cy.get(adultFirstName).click().type('Automation')
         cy.get(adultLastName).click().type('Testing1')
@@ -80,13 +81,13 @@ describe('Families tests', () => {
         cy.get(searchedFamily).click()
         cy.get(addOtherAdult).click()
         cy.get(adultPhone).click()
-        cy.get(typePhoneNumber).click().type('4444444444')
+        cy.get(typePhoneNumber).click().type('4446244540')
         cy.get(continueButton).click()
         cy.get(adultFirst2).click().type('Test')
         cy.get(adultLast2).click().type('AdultPhone')
-        cy.get(newAdultEmail).click().type('phoneAdult2@smart.care')
+        cy.get(newAdultEmail).click().type('phoneAdult22223@smart.care')
         cy.get(relationship2).click()
-        cy.get(relationGrandmother).click()
+        cy.get(relationPhoneAdult).click()
         cy.get(phoneTypeAdult2).click()
         cy.get(phoneBusiness).click()
         
@@ -112,18 +113,18 @@ describe('Families tests', () => {
         cy.wait(3000)
     }) 
 
-    it('Complete the family, Choose the Parent/Legal Guardian',  () => {
-        cy.viewport(1280, 960)
-        cy.wait(3000)
-        cy.get(families).should('be.visible').click()
-        cy.wait(4000)
-        cy.get(searchFamily).should('be.visible').type('AutomationTestAddFamily')
-        cy.wait(3000)
-        cy.get(searchedFamily).click()
-        cy.get(legalGuardianCheckbox).click()
-        cy.get(accountHolder).click()
-        cy.wait(3000)
-    }) 
+    // it('Complete the family, Choose the Parent/Legal Guardian',  () => {
+    //     cy.viewport(1280, 960)
+    //     cy.wait(3000)
+    //     cy.get(families).should('be.visible').click()
+    //     cy.wait(4000)
+    //     cy.get(searchFamily).should('be.visible').type('AutomationTestAddFamily')
+    //     cy.wait(3000)
+    //     cy.get(searchedFamily).click()
+    //     cy.get(legalGuardianCheckbox).click()
+    //     cy.get(accountHolder).click()
+    //     cy.wait(3000)
+    // }) 
 
 })
  //add family
@@ -156,7 +157,7 @@ const typePhoneNumber = ('#mat-input-10')
 const adultFirst2 = ('.mat-focused > .mat-form-field-wrapper > .mat-form-field-flex')
 const adultLast2 = ('.mat-form-field.ng-tns-c64-52 > .mat-form-field-wrapper > .mat-form-field-flex > .mat-form-field-infix')
 const newAdultEmail = ('.mat-form-field.ng-tns-c64-53 > .mat-form-field-wrapper > .mat-form-field-flex > .mat-form-field-infix')
-const relationGrandmother = ('#mat-option-21 > span')
+const relationPhoneAdult = ('#mat-option-18 > .mat-option-text')
 const addOtherAdult = ('sc-add-adult > .secondary > button')
 const continueAgain = (':nth-child(2) > button')
 const relationship2 = ('.mat-form-field.ng-tns-c64-54 > .mat-form-field-wrapper > .mat-form-field-flex > .mat-form-field-infix')
@@ -172,12 +173,12 @@ const addChild = ('.always-visible > .secondary > button')
 const childFirstName = ('#mat-input-9')
 const childLastName = ('#mat-input-10')
 const childBirthday = ('#mat-input-11')
-const selectChildGender = ('#mat-select-value-3')
-const genderBoy = ('#mat-option-7 > span')
+const selectChildGender = ('#mat-dialog-0 > sc-add-child-dialog > mat-dialog-content > form > mat-form-field.mat-form-field.ng-tns-c64-53.mat-primary.mat-form-field-type-mat-select.mat-form-field-appearance-standard.mat-form-field-can-float.ng-untouched.ng-pristine.ng-invalid.ng-star-inserted > div > div.mat-form-field-flex.ng-tns-c64-53')
+const genderBoy = ('#mat-option-13 > span')
 const addChildFinish = ('#mat-dialog-0 > sc-add-child-dialog > mat-dialog-actions > sc-button > button')
 
 //PARENT/LEGAL GUARDIAN
-const legalGuardianCheckbox = ('.mat-checkbox-inner-container')
+const legalGuardianCheckbox = ('body > div:nth-child(7) > div:nth-child(4)')
 
 //ACCOUNT HOLDER
-const accountHolder = ('#mat-radio-12 > label')
+const accountHolder = ('#mat-radio-12 > label > span.mat-radio-container > span.mat-radio-outer-circle')
