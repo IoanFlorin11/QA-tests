@@ -11,6 +11,8 @@ describe('Families tests', () => {
         cy.wait(3000)
     })
 
+
+    //IN AFTER WE ARCHIVE THE FAMILY THAT WE ARE CREATING
     after(() => {
         cy.viewport(1280, 960)
         cy.login("testdirector1@smart.care", "passistheword")
@@ -55,7 +57,7 @@ describe('Families tests', () => {
         // cy.get(viewFamilyDetails).click()
         cy.get(addAdult).click()
         cy.get(adultEmail).click()
-        cy.get(typeEmail).type('automationtest34@smartcare.com')
+        cy.get(typeEmail).type('automationtest34@smartcare.com') //error if the person is archived
         cy.get(continueButton).click()
         cy.get(adultFirstName).click().type('Automation')
         cy.get(adultLastName).click().type('Testing1')
