@@ -50,7 +50,7 @@ describe('Families tests', () => {
         cy.viewport(1280, 960)
         cy.wait(3000)
         cy.get(families).should('be.visible').click()
-        cy.wait(4000)
+        cy.wait(2500)
         cy.get(searchFamily).should('be.visible').type('AutomationTestAddFamily')
         cy.contains('AutomationTestAddFamily') // TEST FOR SEARCH BAR ASWELL; SEARCH BAR IS WORKING
         cy.wait(3000)
@@ -58,7 +58,7 @@ describe('Families tests', () => {
         // cy.get(viewFamilyDetails).click()
         cy.get(addAdult).click()
         cy.get(adultEmail).click()
-        cy.get(typeEmail).type('EmailTestHasToBeChanged1@smartcare.com') //error if the person is archived
+        cy.get(typeEmail).type('EmailTestHasTodBeChanged12121@smartcare.com') //error if the person is archived
         cy.get(continueButton).click()
         cy.get(adultFirstName).click().type('Automation')
         cy.get(adultLastName).click().type('Testing1')
@@ -75,17 +75,17 @@ describe('Families tests', () => {
         cy.viewport(1280, 960)
         cy.wait(3000)
         cy.get(families).should('be.visible').click()
-        cy.wait(4000)
+        cy.wait(2500)
         cy.get(searchFamily).should('be.visible').type('AutomationTestAddFamily')
         cy.wait(3000)
         cy.get(searchedFamily).click()
         cy.get(addOtherAdult).click()
         cy.get(adultPhone).click()
-        cy.get(typePhoneNumber).click().type('0000008006')
+        cy.get(typePhoneNumber).click().type('1111009009')
         cy.get(continueButton).click()
         cy.get(adultFirst2).click().type('Test')
         cy.get(adultLast2).click().type('AdultPhone')
-        cy.get(newAdultEmail).click().type('NeedsToBeChangedEveryTest1@smart.care')
+        cy.get(newAdultEmail).click().type('1NeedsToBeChannged1@smart.care')
         cy.get(relationship2).click()
         cy.get(relationPhoneAdult).click()
         cy.get(phoneTypeAdult2).click()
@@ -99,7 +99,7 @@ describe('Families tests', () => {
         cy.viewport(1280, 960)
         cy.wait(3000)
         cy.get(families).should('be.visible').click()
-        cy.wait(4000)
+        cy.wait(2500)
         cy.get(searchFamily).should('be.visible').type('AutomationTestAddFamily')
         cy.wait(3000)
         cy.get(searchedFamily).click()
@@ -118,7 +118,7 @@ describe('Families tests', () => {
         cy.viewport(1280, 960)
         cy.wait(3000)
         cy.get(families).should('be.visible').click()
-        cy.wait(4000)
+        cy.wait(2500)
         cy.get(searchFamily).should('be.visible').type('AutomationTestAddFamily')
         cy.wait(3000)
         cy.get(searchedFamily).click()
@@ -132,7 +132,7 @@ describe('Families tests', () => {
         cy.viewport(1280, 960)
         cy.wait(3000)
         cy.get(families).should('be.visible').click()
-        cy.wait(4000)
+        cy.wait(2500)
         cy.get(searchFamily).should('be.visible').type('AutomationTestAddFamily')
         cy.wait(3000)
         cy.get(searchedFamily).click()
@@ -237,17 +237,44 @@ describe('Families tests', () => {
         }
     }) 
 
-    it('FILTER&SORT',  () => {
+    it('FILTER&SORT- BY FAMILY NAME: A-Z',  () => {
         cy.viewport(1280, 960)
         cy.wait(3000)
         cy.get(families).should('be.visible').click()
-        cy.wait(4000)
-        cy.get(searchFamily).should('be.visible').type('AutomationTestAddFamily')
-        cy.wait(3000)
+        cy.wait(2000)
         cy.get(filter).click()
+        cy.get(sortByFamilyName).click()
+        cy.get(aZ).click()
+        cy.get(sortViewResults).click()
+        cy.wait(1500)
 
-      
-        
+    }) 
+
+    it('FILTER&SORT- BY FAMILY NAME: Z-A',  () => {
+        cy.viewport(1280, 960)
+        cy.wait(3000)
+        cy.get(families).should('be.visible').click()
+        cy.wait(2000)
+        cy.get(filter).click()
+        cy.get(sortByFamilyName).click()
+        cy.get(zA).click()
+        cy.get(sortViewResults).click()
+        cy.wait(1500)
+    }) 
+
+    it('FILTER&SORT- INCOMPLETE FAMILIES',  () => {
+        cy.viewport(1280, 960)
+        cy.wait(3000)
+        cy.get(families).should('be.visible').click()
+        cy.wait(2000)
+        cy.get(filter).click()
+        cy.get(sortByIncomplete).click()
+        cy.get(sortNoGuardian).click()
+        cy.get(sortNoEmergency).click()
+        cy.get(sortNoEmergency).click()
+        cy.get(sortNoPickup).click()
+        cy.get(sortViewResults).click()
+        cy.wait(1500)
     }) 
 
 })
@@ -343,3 +370,14 @@ const addDocument =('body > sc-app-root > sc-center > sc-app-layout > div > sect
 //FILTER&SORT
 
 const filter = ('[icon=">"] > button')
+const sortByFamilyName =('#mat-expansion-panel-header-14')
+const aZ = ('#mat-radio-7 > .mat-radio-label > .mat-radio-container > .mat-radio-inner-circle')
+const zA = ('#mat-radio-8 > .mat-radio-label > .mat-radio-container > .mat-radio-outer-circle')
+const sortViewResults = ('.side-panel-actions > :nth-child(2) > button')
+
+const clearSearch = ('.mat-form-field-suffix > .icon')
+
+const sortByIncomplete = ('#mat-expansion-panel-header-15')
+const sortNoGuardian = ('#mat-checkbox-47 > .mat-checkbox-layout > .mat-checkbox-inner-container')
+const sortNoPickup =('#mat-checkbox-49 > .mat-checkbox-layout > .mat-checkbox-inner-container')
+const sortNoEmergency = ('#mat-checkbox-48 > .mat-checkbox-layout')
