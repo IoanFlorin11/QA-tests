@@ -51,31 +51,31 @@ describe('MyCenter- Center Information Menu', () => {
         cy.get(families).should('be.visible').click()
     }) 
 
-    it('Add a class, search it and delete it',  () => {
-        cy.viewport(1280, 960)
-        cy.get(myCenter).click()
-        cy.contains('Center Information')
-        cy.get(centerInfo).click()
-        cy.get(centerClasses).click()
-        cy.get(addClass).click()
-        cy.get(className).type('ClassTest')
-        cy.get(classRoom).click()
-        cy.wait(2000)
-        cy.get(classRoom3).click()
-        cy.get(classStartAge).type('3')
-        cy.get(classEndAge).type('19')
-        cy.get(classTeachersRatio).type('3')
-        cy.get(classChildrenRatio).type('15')
-        cy.get(classEndYear).click()
-        cy.get(classDesiredT).type('5')
-        cy.get(classDesiredC).type('15')
-        cy.get(classSize).type('20')
-        cy.get(classSave).click()
-        cy.wait(2000)
-        cy.get(searchClass).click().type('ClassTest')
-        cy.get(deleteClass).click()
-        cy.get(confirmDeleteClass).click()
-    }) 
+    // it('Add a class, search it and delete it',  () => {
+    //     cy.viewport(1280, 960)
+    //     cy.get(myCenter).click()
+    //     cy.contains('Center Information')
+    //     cy.get(centerInfo).click()
+    //     cy.get(centerClasses).click()
+    //     cy.get(add).click()
+    //     cy.get(className).type('ClassTest')
+    //     cy.get(classRoom).click()
+    //     cy.wait(2000)
+    //     cy.get(classRoom3).click()
+    //     cy.get(classStartAge).type('3')
+    //     cy.get(classEndAge).type('19')
+    //     cy.get(classTeachersRatio).type('3')
+    //     cy.get(classChildrenRatio).type('15')
+    //     cy.get(classEndYear).click()
+    //     cy.get(classDesiredT).type('5')
+    //     cy.get(classDesiredC).type('15')
+    //     cy.get(classSize).type('20')
+    //     cy.get(classSave).click()
+    //     cy.wait(2000)
+    //     cy.get(searchClass).click().type('ClassTest')
+    //     cy.get(deleteClass).click()
+    //     cy.get(confirmDeleteClass).click()
+    // }) 
 
     it('Add a schools and delete it',  () => {
         cy.viewport(1280, 960)
@@ -102,10 +102,86 @@ describe('MyCenter- Center Information Menu', () => {
         cy.contains('Lunch')
         cy.contains('PM Snack')
         cy.contains('Dinner')
-
-
-      
     }) 
+
+    it('Templates- add and delete with if-else',  () => {
+        cy.viewport(1280, 960)
+        cy.get(myCenter).click()
+        cy.contains('Center Information')
+        cy.get(centerInfo).click()
+        cy.get(centerTemplates).click()
+        cy.wait(1500)
+        cy.get(body).then(body => {
+            if (body.find(".no-record").length > 0) {   
+                cy.get(add).click()
+                cy.get(templateName).type('NameTest')
+                cy.get(templateParentCategory).type('Parent Category test')
+                cy.get(templateCategory).type('Category Test')
+                cy.get(templateBold).click()
+                cy.get(templateContent).type('Content Test')
+                cy.get(templateSave).click()
+                cy.wait(2000)
+                cy.get(templateDelete).click()
+                cy.get(templateConfirm).click()
+            }else {
+                cy.get(templateDelete).click()
+                cy.get(templateConfirm).click()
+                cy.wait(2000)
+            }
+        });
+        
+     })
+
+        it('Settings',  () => {
+            cy.viewport(1280, 960)
+            cy.get(myCenter).click()
+            cy.contains('Center Information')
+            cy.get(centerInfo).click()
+            cy.get(centerSettings).click()
+            cy.get(settingsCheck1).click()
+
+            cy.get(settingsCheck2).click()
+            cy.get(settingsCheck4).click()
+            cy.get(settingsCheck5).click()
+            cy.get(settingsCheck6).click()
+            cy.get(settingsCheck7).click()
+            cy.contains('Center Settings successfully updated').should('be.visible')
+            cy.wait(2000)
+            cy.get(families).should('be.visible').click()
+            cy.get(myCenter).click()
+            cy.get(centerInfo).click()
+            cy.get(centerSettings).click()
+            cy.get(settingsCheck1).click()
+            cy.get(settingsCheck2).click()
+            cy.get(settingsCheck4).click()
+            cy.get(settingsCheck5).click()
+
+            cy.get(settingsCheck6).click()
+            cy.get(settingsCheck7).click()
+            cy.contains('Center Settings successfully updated').should('be.visible')
+            cy.wait(2000)
+   
+        }) 
+
+        it('Custom Fields',  () => {
+            cy.viewport(1280, 960)
+            cy.get(myCenter).click()
+            cy.get(centerInfo).click()
+            cy.get(centerTags).click()
+            cy.wait(2000)
+            cy.get(bodyTags).then(bodyTags => {
+                if (bodyTags.find(".no-record").length > 0) {   
+                    cy.get(add).click()
+                    
+                }else {
+                    cy.get(centerInfo).click()
+                    cy.get(centerTags).click()
+                    
+                }
+            });
+            
+    }) 
+
 })
 
 
@@ -115,7 +191,7 @@ describe('MyCenter- Center Information Menu', () => {
 const families = ('body > sc-app-root > sc-center > sc-app-layout > div > aside > div > sc-nav-item:nth-child(4) > div > span.icon.ng-star-inserted')
 const myCenter = ('body > sc-app-root > sc-center > sc-app-layout > div > aside > div > sc-nav-item:nth-child(11) > div > span.icon.ng-star-inserted')
 const centerName = ('.mat-form-field.ng-tns-c64-41 > .mat-form-field-wrapper > .mat-form-field-flex')
-const centerPhone = ('.mat-form-field.ng-tns-c64-42 > .mat-form-field-wrapper > .mat-form-field-flex')
+const centerPhone = ('.ng-pristine >  mat-form-field:nth-child(3) > .mat-form-field-wrapper > .mat-form-field-flex')
 const centerAddress = ('.address > .mat-form-field-wrapper > .mat-form-field-flex')
 const centerCity = ('.mat-form-field.ng-tns-c64-44 > .mat-form-field-wrapper > .mat-form-field-flex')
 const centerState = ('.mat-form-field.ng-tns-c64-45 > .mat-form-field-wrapper > .mat-form-field-flex')
@@ -127,8 +203,8 @@ const centerLocations = ('.mat-menu-content > :nth-child(2) > .item')
 const addLocation = ('.table-actions > .secondary > button')
 const locationName = ('.mat-focused > .mat-form-field-wrapper > .mat-form-field-flex')
 const locationType = ('.mat-form-field-type-mat-select > .mat-form-field-wrapper > .mat-form-field-flex')
-const locationRoom = ('#mat-option-52')
-const locationSpace = ('#mat-option-53 > .mat-option-text')
+const locationRoom = ('.mat-option:nth-child(1)')
+const locationSpace = ('.mat-option:nth-child(2)')
 const locationCapacity1 = ('.mat-form-field.ng-tns-c64-56 > .mat-form-field-wrapper > .mat-form-field-flex')
 const locationDescription = ('.mat-form-field.ng-tns-c64-54 > .mat-form-field-wrapper > .mat-form-field-flex')
 const locationSave = (':nth-child(2) > button')
@@ -137,9 +213,9 @@ const locationDelete = (':nth-child(1) > .cdk-column-actions > sc-actions-cell >
 const confirmDeleteLocation = (':nth-child(2) > button')
 
 const centerClasses = ('.mat-menu-content > :nth-child(3) > .item')
-const addClass = ('button')
-const className = ('.mat-form-field.ng-tns-c64-51 > .mat-form-field-wrapper > .mat-form-field-flex')
-const classRoom = ('.mat-form-field.ng-tns-c64-52 > .mat-form-field-wrapper > .mat-form-field-flex')
+const add = ('button')
+const className = ('.ng-pristine > .mat-form-field:nth-child(1) > .mat-form-field-wrapper > .mat-form-field-flex')
+const classRoom = ('.two-columns > .mat-form-field:nth-child(3) > .mat-form-field-wrapper > .mat-form-field-flex ')
 const classRoom3 = ('#mat-option-54 > .mat-option-text')
 const classStartAge = (':nth-child(4) > .mat-form-field > .mat-form-field-wrapper > .mat-form-field-flex')
 const classEndAge = (':nth-child(5) > .mat-form-field > .mat-form-field-wrapper > .mat-form-field-flex')
@@ -163,3 +239,28 @@ const schoolDelete = ('body > sc-app-root > sc-center > sc-app-layout > div > se
 const schoolDeleteConfirm = ('#mat-dialog-1 > sc-simple-dialog > mat-dialog-actions > sc-button:nth-child(2) > button')
 
 const centerMeals = ('.mat-menu-content > :nth-child(5) > .item')
+
+const centerTemplates = ('#mat-menu-panel-3 > div > sc-nav-item:nth-child(6) > div > span.name.ellipsis.ng-star-inserted')
+const addTemplate = ('body > sc-app-root > sc-center > sc-app-layout > div > section > sc-center-settings > section > sc-templates > div > sc-table-wrapper > div > div > sc-button > button')
+const body = ('body > sc-app-root > sc-center > sc-app-layout > div > section')
+const templateName = ('form.ng-pristine > .mat-form-field-appearance-standard > .mat-form-field-wrapper > .mat-form-field-flex')
+const templateParentCategory = ('.mat-form-field:nth-child(2) > .mat-form-field-wrapper > .mat-form-field-flex')
+const templateCategory = ('.mat-form-field:nth-child(3) > .mat-form-field-wrapper > .mat-form-field-flex')
+const templateBold = ('.note-icon-bold')
+const templateContent = ('.note-editable')
+const templateSave = ('.actions > :nth-child(1) > button')
+const templateDelete = ('sc-actions-cell > .secondary > button')
+const templateConfirm = (':nth-child(2) > button')
+
+const centerSettings = ('.mat-menu-content > :nth-child(7) > .item')
+const settingsCheck1 = ('.ng-untouched > .ng-star-inserted:nth-child(1) > .mat-checkbox')
+const settingsCheck2 = ('.ng-untouched > .ng-star-inserted:nth-child(2) > .mat-checkbox:nth-child(2)')
+const settingsCheck4 = ('.ng-star-inserted:nth-child(2) > .mat-checkbox:nth-child(4)')
+const settingsCheck5 = ('.ng-star-inserted:nth-child(3) > .mat-checkbox')
+const settingsCheck6 = ('.ng-star-inserted:nth-child(4) > .mat-checkbox')
+const settingsCheck7 = ('.ng-star-inserted:nth-child(5) > .mat-checkbox')
+const settingsUpdated = ('#toast-container > .ng-trigger')
+
+const centerTags = ('.mat-menu-content > :nth-child(9) > .item')
+const bodyTags = ('body > sc-app-root > sc-center > sc-app-layout > div > section')
+const addTags = ('button')
